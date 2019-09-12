@@ -6,4 +6,5 @@ https://www.youtube.com/channel/UC9Wi1Ias8t4u1OosYnHhi0Q
 and then write the simple code for PLA
 
 you can modify the condition if your data is not linear separable
+
 if(correctNum == n)
