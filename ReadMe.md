@@ -45,7 +45,7 @@ https://github.com/JrPhy/MachineLearning/blob/master/Support%20Vector%20Machine/
 https://github.com/JrPhy/MachineLearning/blob/master/Bootstrap/Blending%20and%20Bagging.pdf
 9. Decision tree and random forest.pdf
 https://github.com/JrPhy/MachineLearning/blob/master/Bootstrap/Decision%20tree%20and%20random%20forest.pdf
-10.Gradient descent.pdf
+10. Gradient descent.pdf
 https://github.com/JrPhy/MachineLearning/blob/master/Bootstrap/Gradient%20descent.pdf
-11.Gradient Boosted Decision Tree.pdf
+11. Gradient Boosted Decision Tree.pdf
 https://github.com/JrPhy/MachineLearning/blob/master/Bootstrap/Gradient%20Boosted%20Decision%20Tree.pdf
