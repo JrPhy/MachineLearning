@@ -38,5 +38,13 @@ $$ = \dfrac{1}{a^2 + b^2}\sqrt{((a^2 + b^2)^2c^2 + (a^2 + b^2)^2a^2x_{0}^2 + (a^
 
 $$ = \dfrac{|ax_{0} + by_{0} + c|}{\sqrt{a^2 + b^2}}$$
 
-得證
+得證#
 
+假設要在二為平面找一條線，那麼 w = (a, b) 與, x = (x<sub>0</sub>, y<sub>0</sub>) 皆為向量，||w|| = $$\sqrt{a^2 + b^2}$$，w<sub>0</sub>x<sub>0</sub> = c = b
+
+$$d(p, L) = \dfrac{|ax_{0} + by_{0} + c|}{\sqrt{a^2 + b^2}} = \dfrac{|w^Tx +b|}{||w||}$$
+
+剩下的就如同 PLA，y = 1 or -1 --> y(w<sup>T</sup>x +b) > 0 為一邊，< 0 為另外一邊。
+
+## 3. 最佳化
+結合標籤後只須加上 y(w<sup>T</sup>x +b) ≥ 1，接著要來找最大的距離，根據前面的條件，最大距離為 max (||w||<sup>-1</sup>)
