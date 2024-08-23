@@ -47,4 +47,28 @@ $$d(p, L) = \dfrac{|ax_{0} + by_{0} + c|}{\sqrt{a^2 + b^2}} = \dfrac{|w^Tx +b|}{
 剩下的就如同 PLA，y = 1 or -1 --> y(w<sup>T</sup>x +b) > 0 為一邊，< 0 為另外一邊。
 
 ## 3. 最佳化
-結合標籤後只須加上 y(w<sup>T</sup>x +b) ≥ 1，接著要來找最大的距離，根據前面的條件，最大距離為 max (||w||<sup>-1</sup>)
+結合標籤後只須加上 y(w<sup>T</sup>x +b) ≥ 1，接著要來找最大的距離，根據前面的條件，最大距離為 max (||w||<sup>-1</sup>)，根據我們的限制條件可以寫成
+
+$$\ \max_{b, w} ||w||^-1 = \min_{b, w} ||w|| = \min_{b, w} \sqrt{{w^2}} -> \min_{b, w} \dfrac{||w||^2}{2}  $$
+
+在此想要在 $$\ y = <w^Tx + b> ≥ 1 $$ 的條件下最小化 $$\ <w^T, w> $$，使用 [Lagrange undetermined multiplier](https://en.wikipedia.org/wiki/Lagrange_multiplier) 來解
+
+$$\ L(\alpha, w, b) = \dfrac{||w||^2}{2} - \sum_{i}\alpha_{i}[y_{i}w^Tx + b-1] $$
+
+$$\\alpha$$ 為未定乘子。若第二項比較大，那麼第一項就比較小，所以就是要解
+
+$$\ \max_{b, w} \min_{\forall \alpha_{i} ≥ 0} L(\alpha, w, b) = \min_{b, w} \max_{\forall \alpha_{i}} ≥ 0 L(\alpha, w, b) $$
+
+此處利用 [KKT 條件](https://ccjou.wordpress.com/2017/02/07/karush-kuhn-tucker-kkt-%E6%A2%9D%E4%BB%B6/)來交換順序，再來就分別對變數 b, w作微分
+
+$$\ \frac{\partial L(\alpha, w, b)}{\partial w} = ||w|| - \sum_{i}\alpha_{i}y_{i}x = 0, \frac{\partial L(\alpha, w, b)}{\partial b} = \sum_{i}\alpha_{i}y_{i} = 0 $$ 
+
+再帶回 L 可得 
+
+$$\ L(\alpha, w, b) = \dfrac{||w||^2}{2} - \sum_{i}\alpha_{i}[y_{i}w^Tx + b-1]$$
+
+$$\ = \dfrac{||\sum_{i}\alpha_{i}y_{i}x||^2}{2} - \sum_{i}\alpha_{i}[y_{i}w^Tx + b-1] - \sum_{i}(\alpha_{i}y_{i}w^T + \alpha_{i}y_{i}b - \alpha_{i} $$
+
+$$\ = -\dfrac{||\sum_{i}\sum_{j}\alpha_{i}y_{i}x^T\alpha_{j}y_{j}x||^2}{2} + \sum_{i}\alpha_{i} $$
+
+在此我們已經決定最佳化的 w，下一步就是要解最佳化的 b。在第二
