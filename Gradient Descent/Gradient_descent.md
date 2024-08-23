@@ -52,7 +52,8 @@ $$\ z = f(x, y) = x^2 - 4x + 2 + y^2 - 4y + 2 $$，最小值為 x = 2, y = 2。�
 
 $$\ \dfrac{\partial E}{\partial b} = \dfrac{1}{n}\sum_{i=1}^{n}(-2x_{i})(y_{i} - bx_{i} - a)$$
 
-$$\ \dfrac{\partial E}{\partial a} = \dfrac{1}{n}\sum_{i=1}^{n}-2(y_{i} - bx_{i} - a)$$\
+$$\ \dfrac{\partial E}{\partial a} = \dfrac{1}{n}\sum_{i=1}^{n}-2(y_{i} - bx_{i} - a)$$
+
 使用梯度下降法即可將上式改為下式
 
 $$\ b_{i+1} = b_{i} - \dfrac{\lambda}{n}\sum_{i=1}^{n}(-2x_{i})(y_{i} - bx_{i} - a)$$
