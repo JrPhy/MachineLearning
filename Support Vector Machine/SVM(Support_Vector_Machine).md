@@ -49,26 +49,53 @@ $$d(p, L) = \dfrac{|ax_{0} + by_{0} + c|}{\sqrt{a^2 + b^2}} = \dfrac{|w^Tx +b|}{
 ## 3. 最佳化
 結合標籤後只須加上 y(w<sup>T</sup>x +b) ≥ 1，接著要來找最大的距離，根據前面的條件，最大距離為 max (||w||<sup>-1</sup>)，根據我們的限制條件可以寫成
 
-$$\ \max_{b, w} ||w||^-1 = \min_{b, w} ||w|| = \min_{b, w} \sqrt{{w^2}} -> \min_{b, w} \dfrac{||w||^2}{2}  $$
+$$\ \max_{b, w}dfrac{1}{||w||} = \min_{b, w} ||w|| = \min_{b, w} \sqrt{{w^2}} -> \min_{b, w} \dfrac{1}{2}||w||^2  $$
 
 在此想要在 $$\ y = <w^Tx + b> ≥ 1 $$ 的條件下最小化 $$\ <w^T, w> $$，使用 [Lagrange undetermined multiplier](https://en.wikipedia.org/wiki/Lagrange_multiplier) 來解
 
-$$\ L(\alpha, w, b) = \dfrac{||w||^2}{2} - \sum_{i}\alpha_{i}[y_{i}w^Tx + b-1] $$
+$$\ L(\alpha, w, b) = \dfrac{1}{2}||w||^2 - \sum_{i}\alpha_{i}[y_{i}w^Tx + b-1] $$
 
 $$\\alpha$$ 為未定乘子。若第二項比較大，那麼第一項就比較小，所以就是要解
 
-$$\ \max_{b, w} \min_{\forall \alpha_{i} ≥ 0} L(\alpha, w, b) = \min_{b, w} \max_{\forall \alpha_{i}} ≥ 0 L(\alpha, w, b) $$
+$$\ \max_{b, w} \min_{\forall \alpha_{i} ≥ 0} L(\alpha, w, b) = \min_{b, w} \max_{\forall \alpha_{i} ≥ 0} L(\alpha, w, b) $$
 
-此處利用 [KKT 條件](https://ccjou.wordpress.com/2017/02/07/karush-kuhn-tucker-kkt-%E6%A2%9D%E4%BB%B6/)來交換順序，再來就分別對變數 b, w作微分
+此處利用 [KKT 條件](https://ccjou.wordpress.com/2017/02/07/karush-kuhn-tucker-kkt-%E6%A2%9D%E4%BB%B6/)來交換順序，再來就分別對變數 b, w 微分
 
 $$\ \frac{\partial L(\alpha, w, b)}{\partial w} = ||w|| - \sum_{i}\alpha_{i}y_{i}x = 0, \frac{\partial L(\alpha, w, b)}{\partial b} = \sum_{i}\alpha_{i}y_{i} = 0 $$ 
 
 再帶回 L 可得 
 
-$$\ L(\alpha, w, b) = \dfrac{||w||^2}{2} - \sum_{i}\alpha_{i}[y_{i}w^Tx + b-1]$$
+$$\ L(\alpha, w, b) = \dfrac{1}{2}||w||^2 - \sum_{i}\alpha_{i}[y_{i}w^Tx + b-1]$$
 
-$$\ = \dfrac{||\sum_{i}\alpha_{i}y_{i}x||^2}{2} - \sum_{i}\alpha_{i}[y_{i}w^Tx + b-1] - \sum_{i}(\alpha_{i}y_{i}w^T + \alpha_{i}y_{i}b - \alpha_{i} $$
+$$\ = \dfrac{1}{2}||\sum_{i}\alpha_{i}y_{i}x||^2 - \sum_{i}\alpha_{i}[y_{i}w^Tx + b-1] - \sum_{i}(\alpha_{i}y_{i}w^T + \alpha_{i}y_{i}b - \alpha_{i} $$
 
-$$\ = -\dfrac{||\sum_{i}\sum_{j}\alpha_{i}y_{i}x^T\alpha_{j}y_{j}x||^2}{2} + \sum_{i}\alpha_{i} $$
+$$\ = -\dfrac{1}{2}||\sum_{i}\sum_{j}\alpha_{i}y_{i}x^T\alpha_{j}y_{j}x||^2 + \sum_{i}\alpha_{i} $$
 
-在此我們已經決定最佳化的 w，下一步就是要解最佳化的 b。在第二
+其中第二個等號中的第二個累加前兩項會消成 0，最後就如上式。
+
+在此我們已經決定最佳化的 w，下一步就是要解最佳化的 b。在第二項中如果 $$\alpha$$ = 0，則 b 可為任意數。所以讓 $$\alpha$$ > 0，則這些點就都在邊界上，即稱為支持向量(Support Vector)，故所求為
+
+$$\ \min_{\forall \alpha_{i} ≥ 0} \dfrac{1}{2}||\sum_{i}\sum_{j}\alpha_{i}y_{i}x^T\alpha_{j}y_{j}x||^2 - \sum_{i}\alpha_{i} $$
+
+## 3. 範例
+有三個點 A(3, 3, 1), B(4, 3, 1), C(1, 1, -1)，最後一位為標籤。首先 $$ \sum_{i}\alpha_{i}y_{i} = 0 -> \alpha_{1} + \alpha_{2} = \alpha_{i}y_{3} $$
+
+$$\ \min_{\forall \alpha_{i} ≥ 0} \dfrac{1}{2}||\sum_{i}\sum_{j}\alpha_{i}y_{i}x^T\alpha_{j}y_{j}x||^2 - \sum_{i}\alpha_{i} $$
+
+$$\ = \min_{\forall \alpha_{i} ≥ 0} \dfrac{1}{2}(8\alpha_{1}^2 + 20\alpha_{1}\alpha_{2} + 13\alpha_{2}^2) - 2\alpha_{1} - 2\alpha_{2} $$
+
+$$\ \dfrac{1}{\partial \alpha_{1}} \dfrac{1}{2}(8\alpha_{1}^2 + 20\alpha_{1}\alpha_{2} + 13\alpha_{2}^2) - 2\alpha_{1} - 2\alpha_{2} = 8\alpha_{1} + 10\alpha_{2} - 2 = 0$$
+
+$$\ \dfrac{1}{\partial \alpha_{2}} \dfrac{1}{2}(8\alpha_{1}^2 + 20\alpha_{1}\alpha_{2} + 13\alpha_{2}^2) - 2\alpha_{1} - 2\alpha_{2} = 10\alpha_{1} + 13\alpha_{2} - 2 = 0$$
+
+由上兩式可得 $$\ \alpha_{1} = 1.5, \alpha_{2} = -1 $$，但此解並不滿足限制條件，故最小值應於邊界，將 $$\ \alpha_{1} = \alpha_{2} = 0 $$ 帶入可得 
+
+$$\ \alpha_{1} = 0 -> \alpha_{3} = \alpha_{2} = \dfrac{2}{13}, min = \dfrac{-2}{13} $$
+$$\ \alpha_{2} = 0 -> \alpha_{3} = \alpha_{1} = \dfrac{1}{4}, min = \dfrac{-1}{4} $$
+
+故 $$\ \dfrac{-1}{4} $$ 為最小值，帶入 w 與 b 可得\
+w = (-1)* (3, 3)/4 + (-1)* (4, 3)/4 = (0.5, 0.5)\
+b = y - w<sup>T<sup>x = 1 - (-1)* 18/4 + (-1)*20/4 = 2
+所得分隔線為 0.5x + 0.5y = 2
+
+所以在 SVM 中只關心在邊界上的點，在邊界內的就不用做計算
