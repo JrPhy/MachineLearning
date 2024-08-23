@@ -91,7 +91,7 @@ $$\ \alpha_{i}^-[(y - wz_{i} - b) - (\epsilon + \xi_{i}^{-})], (C - \alpha_{i}^-
 
 若 $$\ \xi_{i}^{+} > 0 $$，則 $$\ C = \alpha_{i}^+$$。
 $$\ \xi_{i}^{-} > 0 $$，則 $$\ C = \alpha_{i}^-$$，所以 $$\ 0 ≤ \alpha_{i}^-, \alpha_{i}^+ ≤ C$$
-
+![IMG](https://github.com/JrPhy/MachineLearning/blob/master/Support%20Vector%20Machine/img/SVM_SVR.jpg)
 ## 稀疏的 SVR 解
 在軟邊界 SVM，我們只關心區域為內的錯誤，SVR 也是如此。若分類正確，那麼大部分的錯誤會在區域外，所以 $$\ \xi_{n}^{-} = \xi_{n}^{+} = 0 $$，但是
 $$\ \alpha_{i}^+[(y - wz_{i} - b) - \epsilon] = 0 $$ 且 $$\ [(y - wz_{i} - b) - \epsilon] ≠ 0 $$，所以 $$\ \alpha_{i}^+ > 0, \alpha_{i}^- > 0 $$，此即為當 SVR 為稀疏時的解，如同 SVM。
