@@ -52,4 +52,6 @@ $$\ \nabla_{i} E_{in}(w,x_{i}, y_{i}) = \frac{1}{N} \sum_{i=1}^{N} \theta(-y_{i}
 ## 4. Logistic 回歸的平方誤
 為何 Logistic 回歸不使用平方誤?直接帶進去看看
 
-$$\ \theta(s) = \theta\sum_{i=0}^{n}w_{i}x_{i}), E(w) = \dfrac{1}{2} (hat^{y} - \theta\sum_{i=0}^{n}w_{i}x_{i}))^2$$
+$$\ \theta(s) = \theta(\sum_{i=0}^{n}w_{i}x_{i}), E(w) = \dfrac{1}{2} ( \hat{y} - \theta\sum_{i=0}^{n}w_{i}x_{i}))^2$$
+
+若 $$\ \theta(w^Tx) = 1 $$ -> 接近目標。 $$\ \theta(w^Tx) = 0 $$ -> 遠離目標，不論是近或遠步伐都很小，但我們希望步伐大一點在遠離時，直到離目標近時才變小。
