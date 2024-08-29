@@ -35,7 +35,8 @@ $$\ min\_{w}(\frac{\lambda}{N}ww^T + \frac{1}{N} \sum_{i}err_{i}), w_{opt} = \su
 證明：令 w<sub>opt</sub> = w<sub>||</sub> + w<sub>⊥</sub>，w<sub>||</sub> 由 z<sub>n</sub> 生成，w<sub>⊥</sub> 與 z<sub>n</sub> 是線性相依的，所以\ err(y<sub>n</sub>, z<sub>opt</sub><sup>T</sup>, z<sub>n</sub>) = err(y<sub>n</sub>, (w<sub>⊥</sub>+w<sub>||</sub>)<sup>T</sup>, z<sub>n</sub>)\
 那麼 w<sub>opt</sub>w<sub>opt</sub><sup>T</sup> = w<sub>||</sub>w<sub>||</sub><sup>T</sup> + w<sub>⊥</sub>w<sub>⊥</sub><sup>T</sup> + 2w<sub>||</sub>w<sub>⊥</sub> > w<sub>||</sub>w<sub>||</sub><sup>T</sup> (-><-)，所以 w<sub>⊥</sub><sup>T</sup> = 0
 
-所以經由表現理論，$$\ w_{opt} = \sum_{i=1}^{N}\beta_{i} z_{i} $$
+所以經由表現理論，
+$$\ w_{opt} = \sum_{i=1}^{N}\beta_{i} z_{i} $$
 
 $$\ min\_{w}(\frac{\lambda}{N}ww^T + \frac{1}{N} \sum_{i}err_{i}) = min\_{w}(\sum_{i=1}^{N}\sum_{j=1}^{N}\beta_{i} \beta_{j} K(x_{i}, x_{j}) + \frac{1}{N}\sum_{i=1}^{N} log(1+exp(-y_{n}\sum_{j=1}^{N}\beta_{j} K(x_{i}, x_{j})))) $$
 
