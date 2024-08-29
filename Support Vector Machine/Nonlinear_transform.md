@@ -20,5 +20,5 @@ Q = n, # = 1+2+3+...+(n+1) = (n+1)(n+2)/2\
 而有以下方式可以避免過擬合
 1. 從次數較低的多項式開始
 2. 資料清理，消除雜訊
-3. 調整
+3. [正則化](https://github.com/JrPhy/MachineLearning/blob/master/Support%20Vector%20Machine/Regularization.md)
 4. 驗證
