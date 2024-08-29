@@ -78,7 +78,7 @@ $$\ = -\dfrac{1}{2}||\sum_{i}\sum_{j}\alpha_{i}y_{i}x^T\alpha_{j}y_{j}x||^2 + \s
 $$\ \min_{\forall \alpha_{i} ≥ 0} \dfrac{1}{2}||\sum_{i}\sum_{j}\alpha_{i}y_{i}x^T\alpha_{j}y_{j}x||^2 - \sum_{i}\alpha_{i} $$
 
 ## 3. 範例
-有三個點 A(3, 3, 1), B(4, 3, 1), C(1, 1, -1)，最後一位為標籤。首先 $$ \sum_{i}\alpha_{i}y_{i} = 0 -> \alpha_{1} + \alpha_{2} = \alpha_{i}y_{3} $$
+有三個點 A(3, 3, 1), B(4, 3, 1), C(1, 1, -1)，最後一位為標籤。首先 $$\ \sum_{i}\alpha_{i}y_{i} = 0 -> \alpha_{1} + \alpha_{2} = \alpha_{i}y_{3} $$
 
 $$\ \min_{\forall \alpha_{i} ≥ 0} \dfrac{1}{2}||\sum_{i}\sum_{j}\alpha_{i}y_{i}x^T\alpha_{j}y_{j}x||^2 - \sum_{i}\alpha_{i} $$
 
