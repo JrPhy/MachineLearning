@@ -23,7 +23,7 @@ P(x<sub>1</sub>)f(s<sub>1</sub>)* P(x<sub>1</sub>)(1-f(s<sub>2</sub>))* P(x<sub>
 ## 2. 最佳化
 在此我們要最佳化 $$\ \theta(y_{i}w^Tx_{i}) $$，但是因為有相乘所以直接算不好算，所以先取 log 後就可以換成相加再做計算
 
-$$\ \prod_{i=1}^{n} h(y_{i}x_{i}) -> ln\prod_{i=1}^{n} \theta(y_{i}w^Tx_{i}) = \sum_{i=1}^{n} ln\theta(y_{i}w^Tx_{i}) $$
+$$\ \prod_{i=1}^{n} h(y_{i}x_{i}) \rightarrow ln\prod_{i=1}^{n} \theta(y_{i}w^Tx_{i}) = \sum_{i=1}^{n} ln\theta(y_{i}w^Tx_{i}) $$
 
 = $$\ max_{w} \prod_{i=1}^{n} h(y_{i}x_{i}) = max_{w} \sum_{i=1}^{n} ln\theta(y_{i}w^Tx_{i}) = min_{w} \sum_{i=1}^{n} -ln\theta(y_{i}w^Tx_{i}) $$
 
@@ -54,4 +54,4 @@ $$\ \nabla_{i} E_{in}(w,x_{i}, y_{i}) = \frac{1}{N} \sum_{i=1}^{N} \theta(-y_{i}
 
 $$\ \theta(s) = \theta(\sum_{i=0}^{n}w_{i}x_{i}), E(w) = \dfrac{1}{2} ( \hat{y} - \theta\sum_{i=0}^{n}w_{i}x_{i}))^2$$
 
-若 $$\ \theta(w^Tx) = 1 $$ -> 接近目標。 $$\ \theta(w^Tx) = 0 $$ -> 遠離目標，不論是近或遠步伐都很小，但我們希望步伐大一點在遠離時，直到離目標近時才變小。
+若 $$\ \theta(w^Tx) = 1 \rightarrow $$ 接近目標。 $$\ \theta(w^Tx) = 0 \rightarrow $$ 遠離目標，不論是近或遠步伐都很小，但我們希望步伐大一點在遠離時，直到離目標近時才變小。
