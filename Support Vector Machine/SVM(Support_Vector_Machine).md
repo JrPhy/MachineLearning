@@ -23,8 +23,7 @@ $$d(p, L) = \dfrac{|ax_{0} + by_{0} + c|}{\sqrt{a^2 + b^2}}$$
 
 #### 證明
 假設 L' 通過 P 點且垂直 L，則 
-L' = bx – ay = (bx<sub>0</sub> – ay<sub>0</sub>
-)\
+L' = bx – ay = (bx<sub>0</sub> – ay<sub>0</sub>)\
 L = ax + by + c = 0\
 求解 x, y 可得
 
@@ -44,12 +43,12 @@ $$ = \dfrac{|ax_{0} + by_{0} + c|}{\sqrt{a^2 + b^2}}$$
 
 $$d(p, L) = \dfrac{|ax_{0} + by_{0} + c|}{\sqrt{a^2 + b^2}} = \dfrac{|w^Tx +b|}{||w||}$$
 
-剩下的就如同 PLA，y = 1 or -1 --> y(w<sup>T</sup>x +b) > 0 為一邊，< 0 為另外一邊。
+剩下的就如同 PLA，y = 1 or -1 -\rightarrow y(w<sup>T</sup>x +b) > 0 為一邊，< 0 為另外一邊。
 
 ## 3. 最佳化
 結合標籤後只須加上 y(w<sup>T</sup>x +b) ≥ 1，接著要來找最大的距離，根據前面的條件，最大距離為 max (||w||<sup>-1</sup>)，根據我們的限制條件可以寫成
 
-$$\ \max_{b, w}dfrac{1}{||w||} = \min_{b, w} ||w|| = \min_{b, w} \sqrt{{w^2}} -> \min_{b, w} \dfrac{1}{2}||w||^2  $$
+$$\ \max_{b, w}dfrac{1}{||w||} = \min_{b, w} ||w|| = \min_{b, w} \sqrt{{w^2}} \rightarrow \min_{b, w} \dfrac{1}{2}||w||^2  $$
 
 在此想要在 $$\ y = <w^Tx + b> ≥ 1 $$ 的條件下最小化 $$\ <w^T, w> $$，使用 [Lagrange undetermined multiplier](https://en.wikipedia.org/wiki/Lagrange_multiplier) 來解
 
@@ -78,7 +77,7 @@ $$\ = -\dfrac{1}{2}||\sum_{i}\sum_{j}\alpha_{i}y_{i}x^T\alpha_{j}y_{j}x||^2 + \s
 $$\ \min_{\forall \alpha_{i} ≥ 0} \dfrac{1}{2}||\sum_{i}\sum_{j}\alpha_{i}y_{i}x^T\alpha_{j}y_{j}x||^2 - \sum_{i}\alpha_{i} $$
 
 ## 3. 範例
-有三個點 A(3, 3, 1), B(4, 3, 1), C(1, 1, -1)，最後一位為標籤。首先 $$\ \sum_{i}\alpha_{i}y_{i} = 0 -> \alpha_{1} + \alpha_{2} = \alpha_{i}y_{3} $$
+有三個點 A(3, 3, 1), B(4, 3, 1), C(1, 1, -1)，最後一位為標籤。首先 $$\ \sum_{i}\alpha_{i}y_{i} = 0 \rightarrow \alpha_{1} + \alpha_{2} = \alpha_{i}y_{3} $$
 
 $$\ \min_{\forall \alpha_{i} ≥ 0} \dfrac{1}{2}||\sum_{i}\sum_{j}\alpha_{i}y_{i}x^T\alpha_{j}y_{j}x||^2 - \sum_{i}\alpha_{i} $$
 
@@ -90,8 +89,9 @@ $$\ \dfrac{1}{\partial \alpha_{2}} \dfrac{1}{2}(8\alpha_{1}^2 + 20\alpha_{1}\alp
 
 由上兩式可得 $$\ \alpha_{1} = 1.5, \alpha_{2} = -1 $$，但此解並不滿足限制條件，故最小值應於邊界，將 $$\ \alpha_{1} = \alpha_{2} = 0 $$ 帶入可得 
 
-$$\ \alpha_{1} = 0 -> \alpha_{3} = \alpha_{2} = \dfrac{2}{13}, min = \dfrac{-2}{13} $$
-$$\ \alpha_{2} = 0 -> \alpha_{3} = \alpha_{1} = \dfrac{1}{4}, min = \dfrac{-1}{4} $$
+$$\ \alpha_{1} = 0 \rightarrow \alpha_{3} = \alpha_{2} = \dfrac{2}{13}, min = \dfrac{-2}{13} $$
+
+$$\ \alpha_{2} = 0 \rightarrow \alpha_{3} = \alpha_{1} = \dfrac{1}{4}, min = \dfrac{-1}{4} $$
 
 故 $$\ \dfrac{-1}{4} $$ 為最小值，帶入 w 與 b 可得\
 w = (-1)* (3, 3)/4 + (-1)* (4, 3)/4 = (0.5, 0.5)\
