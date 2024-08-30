@@ -63,8 +63,9 @@ $$\ min_{k}(min_{h}\frac{1}{N}\sum_{n=1}^{N}err (\sum_{i=1}^{M}\alpha_{i}g_{i}(x
 
 ## 6. 算法
 s<sub>1</sub> = s<sub>2</sub> = ... = s<sub>N</sub> = 0\
-for t = 1, 2, ..., T\
+for t = 1, 2, ..., T
 1. 得到 g<sub>t</sub>
 2. 計算 α<sub>t</sub>
 3. 更新 s<sub>n</sub> = s<sub>n</sub> + α<sub>t</sub>g<sub>t</sub>(x<sub>n</sub>)
+
 回傳 $$\ G(x) = \sum_{t=1}^{T} \alpha_{t}g_{t}(x) $$
