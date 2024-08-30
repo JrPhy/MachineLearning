@@ -6,13 +6,13 @@ $$\ min\_{w}(\frac{||w||^2}{2} + C \sum_{i}\xi_{i}) = min\_{w}(\frac{ww^T}{2} + 
 
 現在我們要將其連結軟邊界 SVM 與 Logistic 回歸。軟邊界 SVM 的條件為
 
-$$\ y(w^Tx + b) ≥ 1 - \xi_{i}), xi_{i} ≥ 0 ⭢ xi_{i} ≥ 1 - y(w^Tx + b) $$
+$$\ y(w^Tx + b) ≥ 1 - \xi_{i}), xi_{i} ≥ 0 \rightarrow xi_{i} ≥ 1 - y(w^Tx + b) $$
 
 等效於 max(1-y(w<sup>T</sup>x + b), 0)，所以軟邊界 SVM 的分數為 err<sub>SVM</sub> = max(1-y(w<sup>T</sup>x + b), 0)，Logistic 回歸 的分數為 err<sub>Logistic</sub> = log<sub>2</sub>(1-y(w<sup>T</sup>x + b), 0)。所以
 
-$$\ ys ⭢ \infty, err_{SVM}, err_{Logistic} ⭢ 0 $$
+$$\ ys \rightarrow \infty, err_{SVM}, err_{Logistic} \rightarrow 0 $$
 
-$$\ ys ⭢ -\infty, err_{SVM}, err_{Logistic} ⭢ \infty $$
+$$\ ys \rightarrow -\infty, err_{SVM}, err_{Logistic} \rightarrow \infty $$
 
 所以我們可以執行 SVM 來得到 w<sub>SVM</sub> 與 b<sub>SVM</sub>，然後再丟進 Logistic 回歸中，但是我們還無法得到伴隨機率分布的目標函數。或者我們可以設定 b, w 當作初始條件，然後使用梯度下降得到 w<sub>opt</sub> 與 b<sub>opt</sub>，但我們就不能使用非線性轉換的 kernel trick，所以我們必須修改分數的計算。想法是先執行 SVM 伴隨著 kernel，然後將分數帶成 $$\ z = w_{SVM}^T\Phi(x) + b_{SVM} $$，再乘 A 然後 +B 就可得到 Az+B，那麼此形式就類似於 Logistic 回歸。
 
@@ -24,7 +24,7 @@ $$\ min_{A, B}\frac{1}{N}\sum_{i=1}^{N}log(1+exp(-y_{n} (A(w_{SVM}^T\Phi(x) + b_
 
 回憶一下為什麼要做 Kernel，w<sub>opt</sub> 為 z 的線性組合
 
-$$\ w_{opt} = \sum_{i=1}^{N}\beta_{n} z_{n} ⭢ w_{opt}^T z_{n} = \sum_{i=1}^{N}\beta_{n} z_{n}z_{n}^T = \sum_{i=1}^{N}\beta_{n} K(x_{n}, x) $$
+$$\ w_{opt} = \sum_{i=1}^{N}\beta_{n} z_{n} \rightarrow w_{opt}^T z_{n} = \sum_{i=1}^{N}\beta_{n} z_{n}z_{n}^T = \sum_{i=1}^{N}\beta_{n} K(x_{n}, x) $$
 
 所以此時我們就需要將 w<sub>opt</sub> 用 z 表示
 
