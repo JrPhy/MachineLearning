@@ -27,25 +27,14 @@ Reinforcement learning is like the AI in some movie or anime, the algorithm will
 
 
 In this folder, it is recommanded follow the order
-1. Percetron Learning Algorithm.pdf 
-https://github.com/JrPhy/MachineLearning/blob/master/Perceptron%20Learning%20Algorithm/Percetron%20Learning%20Algorithm.pdf
-2. Support Vector Machine.pdf
-https://github.com/JrPhy/MachineLearning/blob/master/Support%20Vector%20Machine/Support%20Vector%20Machine.pdf
-3. Nonlinear transform.pdf
-https://github.com/JrPhy/MachineLearning/blob/master/Support%20Vector%20Machine/Nonlinear%20transform.pdf
-4. SVM kernel trick and soft-margin SVM.pdf
-https://github.com/JrPhy/MachineLearning/blob/master/Support%20Vector%20Machine/SVM%20kernel%20trick%20and%20soft-margin%20SVM.pdf
-5. Regularization.pdf
-https://github.com/JrPhy/MachineLearning/blob/master/Support%20Vector%20Machine/Regularization.pdf
-6. Kernel Logistic Regression.pdf
-https://github.com/JrPhy/MachineLearning/blob/master/Support%20Vector%20Machine/Kernel%20Logistic%20Regression.pdf
-7. Support Vector Regression.pdf
-https://github.com/JrPhy/MachineLearning/blob/master/Support%20Vector%20Machine/Support%20Vector%20Regression.pdf
-8. Blending and Bagging.pdf
-https://github.com/JrPhy/MachineLearning/blob/master/Bootstrap/Blending%20and%20Bagging.pdf
-9. Decision tree and random forest.pdf
-https://github.com/JrPhy/MachineLearning/blob/master/Bootstrap/Decision%20tree%20and%20random%20forest.pdf
-10. Gradient descent.pdf
-https://github.com/JrPhy/MachineLearning/blob/master/Bootstrap/Gradient%20descent.pdf
-11. Gradient Boosted Decision Tree.pdf
-https://github.com/JrPhy/MachineLearning/blob/master/Bootstrap/Gradient%20Boosted%20Decision%20Tree.pdf
+1. Percetron Learning Algorithm
+2. Support Vector Machine
+3. Nonlinear transform
+4. SVM kernel trick and soft-margin SVM
+5. Regularization
+6. Kernel Logistic Regression
+7. Support Vector Regression
+8. Blending and Bagging
+9. Decision tree and random forest
+10. Gradient descent
+11. Gradient Boosted Decision Tree
