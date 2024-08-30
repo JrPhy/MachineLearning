@@ -55,3 +55,13 @@ y<sub>n</sub> = s<sub>n</sub><sup>(L)</sup> = σ(w<sup>T(L)</sup>s<sup>(L-1)</su
 σ(w<sup>T(L)</sup>σ(w<sup>T(L-1)</sup>s<sup>(L-2)</sup>)) = ... = σ(w<sup>T(L)</sup>σ(w<sup>T(L-1)</sup>σ(w<sup>T(L-2)</sup>...σ(w<sup>T(1)</sup>x<sup>(0)</sup>)...)
 
 假設有三層，那麼
+![img](https://github.com/JrPhy/MachineLearning/blob/master/Neural%20Network/img/BP.jpg)\
+圖中的 w, x 皆為向量，且 w<sub>0</sub>x<sub>0</sub> = b。每個輸入乘上權重然後得到分數，在把分數丟進函數中然後得到下個輸入，對於隱藏層來說，我們想計算
+
+$$\ \delta_{1}^{l}\frac{\partial e_{n}}{\partial s_{i}^{(l)}} = \sum_{k=1}^{d^{l+1}}\frac{\partial e_{n}}{\partial s_{k}^{(l+1)}}\frac{\partial s_{k}^{(l+1)}}{\partial x_{j}^{(l)}}\frac{\partial x_{j}^{l}}{\partial s_{j}^{l}} = \sum_{k}\delta_{1}^{l+1}w_{jk}^{l+1}\sigma'(s_{j}^{l}) $$
+
+$$\ \frac{\partial s_{k}^{l+1}}{\partial x_{j}^{l}} = \frac{\partial \sum_{i}w_{jk}^{l+1}x_{j}^{l}}{\partial x_{j}^{l}} = w_{jk}^{l+1}, \frac{\partial x_{j}^{l}}{\partial s_{j}^{l}} = \frac{\partial \sigma(s_{j}^{l})}{\partial s_{j}^{l}} = \sigma'(s_{j}^{l}) $$
+
+上式只是鏈鎖律，最小化從輸出到輸入的誤差，然後更新權重，所以稱為背向傳播。下圖中最上面為前向傳播，中間為背向傳播。\
+![img](https://github.com/JrPhy/MachineLearning/blob/master/Neural%20Network/img/FP_BP_GDBP.jpg)\
+對於輸入層來說，可以利用梯度下降來更新權重，如此一來就可以反覆使用前向與背向傳播。現在也有許多工具，所以不需要自行開發。
