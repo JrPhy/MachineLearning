@@ -14,4 +14,20 @@ E<sub>out</sub> = || y<sub>predict</sub> - f(x<sub>predict</sub>) ||，或是其
 使用 C[f<sub>(N-1)</sub><sup>(i)</sup>] 來表示交叉驗證的誤差，平均為
  C<sub>avg</sub>，假設 C[f<sub>(N-1)</sub><sup>(i)</sup>] 是用 E<sub>X</sub>(C[f<sub>(N-1)</sub><sup>(i)</sup>])，C<sub>avg</sub> 也是，所以\
 MSE(C<sub>avg</sub>) = E<sub>X</sub>[(C<sub>avg</sub> - E<sub>X</sub>(C[f<sub>(N)</sub>]))<sup>2</sup>] = Var<sub>X</sub>(C<sub>avg</sub>) + bias(C<sub>avg</sub>)<sup>2</sup>\
-bias(C<sub>avg</sub>)<sup>2</sup> = E<sub>X</sub>(C<sub>avg</sub>) - E<sub>X</sub>(C[f<sub>(N)</sub>]) - 
+bias(C<sub>avg</sub>)<sup>2</sup> = E<sub>X</sub>(C<sub>avg</sub>) - E<sub>X</sub>(C[f<sub>(N)</sub>]) = $$\ E[{\sum_{i=1}^{k} \frac{1}{k}C[f_{N-1}^{i}]} - E(C[f_{N}]) $$ \
+................... $$\ = \frac{1}{k}E[{\sum_{i=1}^{k}C[f_{N-1}^{i}]} - E(C[f_{N}]) = E[C[f_{N-1}^{i=s}]] - E(C[f_{N}]) $$\
+................... $$\ = bias(C[f_{N-1}^{i=s}]) \forall {s} $$
+
+Var<sub>X</sub>(C<sub>cv</sub>) = $$\ Var(E[{\sum_{i=1}^{k} \frac{1}{k}C[f_{N-1}^{i}]}]) = \frac{1}{k^2} Var (\sum_{i=1}^{k}C[f_{N-1}^{i}]) $$\
+$$\ = \frac{1}{k^2} (Var(\sum_{i=1}^{k} C[f_{N-1}^{i}]) + 2\sum_{j>1}^{k}\sum_{i=1}^{k} Cov_{X}(C[f_{N-1}^{i}], C[f_{N-1}^{i}])) $$\
+$$\ = \frac{1}{k^2} (Var(C[f_{N-1}^{s}]) + 2\sum_{j>1}^{k}\sum_{i=1}^{k} Cov_{X}(C[f_{N-1}^{i}], C[f_{N-1}^{i}])) \forall {s} $$\
+所以可知 $$\ bias(C_{cv}) = bias(C[f_{N-1}^{s}])、Var_{X}(C_{cv}) = \frac{1}{k^2} (Var(C[f_{N-1}^{s}]) + 2\sum_{j>1}^{k}\sum_{i=1}^{k} Cov_{X}(C[f_{N-1}^{i}], C[f_{N-1}^{i}])) \forall {s} $$。其中包含 $$\ C[f_{N-1}^{s}] $$ 的兩項當資料越多時就可以減小誤差，而包含 Cov 那項則是資料越少誤差越小。所以在分資料時可以將較多的資料拿去訓練，僅用少部分的資料作驗證，一般來說會選擇 k = 5 或 10。若是資料集的數量真的很少，最少也需要留一份資料用來驗證，稱為
+**Leave-One-Out CV(LOOCV)**
+
+## 訓練與測試
+模型是從訓練資料來，所以訓練誤差越低代表模型越正確，但仍然會過擬合。所以在訓練模型後需要使用測試集，目的就是降低訓練與測試誤差。
+
+|  | 高訓練誤差 | 低訓練誤差|
+| :--- | :--- | :--- |
+| 高測試誤差 | 錯誤的模型 | 過擬合 |
+| 低測試誤差 | 需多驗證 | 正確的模型 |
