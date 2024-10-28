@@ -2,10 +2,8 @@
 
 ## 1. SubWord Tokenizer
 一般來說會先準備一個字典來記錄常用的字，當語句中出現沒有在字典中的詞時，就可以利用拼接的方式放進字典裏面成為一個新的詞，如 BERT 中所使用的 WordPiece，或是 GPT 中使用的 BPE(Byte Pair Encoding)。或者是準備一份很大的字典，經由訓練的方式來將不常用到的字或詞從字典中剔除，稱為 Unigram。
-#### 1. WordPiece
-在中文裡有一種特別的語句，同一句話切在不同的地方會有不同的意思，例如「[下雨天留客天留我不留](https://zh.wikipedia.org/zh-tw/%E4%B8%8B%E9%9B%A8%E5%A4%A9%E7%95%99%E5%AE%A2%E5%A4%A9%E7%95%99%E6%88%91%E4%B8%8D%E7%95%99)」，如果字典是以單字或字母為最小單位，那就可以使用此方法來增加字典中的詞彙量。
 
-#### 2. Byte Pair Encoding (BPE)
+#### 1. Byte Pair Encoding (BPE)
 最早由Philip Gage 提出，用來做數據壓縮上。它的原理是將常見連續的兩個符號以另一個符號表達。例如 ababab 中 a 後面很常接著 b 我們就用 c 表達 ab，並得到一個新的序列 ccc，c=ab。英文會有相同的字首搭配不同的字根來表示不同時態或是詞性的用法，且英文的最小單位為字母，就很適合用此算法，步驟如下
 1. 先將每個單字依照字母做切分，並在結尾加上 </w> 表示結束
 2. 統計每兩個連續出現字符的次數並由高到低做排序
@@ -55,6 +53,21 @@ nice
 ```
 ['lo w </w>', 'lo w e r </w>', 'n e w est</w>', 'widest</w>', 'n e w est</w>', 'widest</w>', 'widest</w>', 'widest</w>', 'n i c e </w>']
 ```
+
+#### 2. WordPiece
+類似於 BPE，但是在 WordPiece 一個字會被拆成下列表示
+```
+cat --> ['c'， '##a'， '##t']
+```
+WordPiece 會去計算一個分數，選擇提升語言模型機率最大的相鄰子字加入詞表。算法如下
+```
+score=(freq_of_pair)/(freq_of_first_element×freq_of_second_element)
+```
+最後再根據分數去做合併，詳細的方式可以[參考這篇](https://www.51cto.com/article/779682.html)。
+
+#### 3. Unigram
+不同於前面兩種，Unigram 是將從一個非常大的資料集中去除資料，如果語料庫中的第一個單字是 cats，則子字串['c'， 'a'， 't'， 's'， 'ca'， 'at'， 'ts'， 'cat'， 'ats']將被添加到詞彙表中。
+
 ## 1. Word2Vec
 這些詞與哪些詞有類似的意思，稱為語意相似度，例如
 |  | 男人 | 男人 | 男人 | 男人 | 男人 | 男人 | 男人 | 男人 |
