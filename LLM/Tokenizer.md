@@ -5,6 +5,56 @@
 #### 1. WordPiece
 在中文裡有一種特別的語句，同一句話切在不同的地方會有不同的意思，例如「[下雨天留客天留我不留](https://zh.wikipedia.org/zh-tw/%E4%B8%8B%E9%9B%A8%E5%A4%A9%E7%95%99%E5%AE%A2%E5%A4%A9%E7%95%99%E6%88%91%E4%B8%8D%E7%95%99)」，如果字典是以單字或字母為最小單位，那就可以使用此方法來增加字典中的詞彙量。
 
+#### 2. Byte Pair Encoding (BPE)
+最早由Philip Gage 提出，用來做數據壓縮上。它的原理是將常見連續的兩個符號以另一個符號表達。例如 ababab 中 a 後面很常接著 b 我們就用 c 表達 ab，並得到一個新的序列 ccc，c=ab。英文會有相同的字首搭配不同的字根來表示不同時態或是詞性的用法，且英文的最小單位為字母，就很適合用此算法，步驟如下
+1. 先將每個單字依照字母做切分，並在結尾加上 </w> 表示結束
+2. 統計每兩個連續出現字符的次數並由高到低做排序
+3. 將頻率最高的字符"es"合併，得到新的詞表
+4. 重複上面三個步驟直到頻率低於某個值
+[以下資料可參考此篇](https://www.zhaokangkang.com/article/6843fe1d-f846-4eae-9fd1-cf10fdfb5d15)，舉例來說
+```
+low
+lower
+newest
+widest
+newest
+widest
+widest
+widest
+nice
+```
+先做第一步後變成
+```
+['l o w </w>', 
+'l o w e r </w>', 
+'n e w e s t </w>', 
+'w i d e s t </w>', 
+'n e w e s t </w>', 
+'w i d e s t </w>', 
+'w i d e s t </w>', 
+'w i d e s t </w>', 
+'n i c e </w>']
+```
+在統計後得到
+```
+{"es": 6, "st": 6, "t</w>": 6, "wi": 4, "id": 4, "de": 4, "we": 3, "lo": 2, "ow": 2, "ne": 2, "ew": 2, "w</w>": 1, "er": 1, "r</w>": 1, "ni": 1, "ic": 1, "ce": 1, "e</w>": 1}
+```
+進行合併後得到
+```
+['l o w </w>', 
+'l o w e r </w>', 
+'n e w es t </w>', 
+'w i d es t </w>',
+'n e w es t </w>', 
+'w i d es t </w>', 
+'w i d es t </w>', 
+'w i d es t </w>', 
+'n i c e </w>']
+```
+重複以上步驟，最後可以得到
+```
+['lo w </w>', 'lo w e r </w>', 'n e w est</w>', 'widest</w>', 'n e w est</w>', 'widest</w>', 'widest</w>', 'widest</w>', 'n i c e </w>']
+```
 ## 1. Word2Vec
 這些詞與哪些詞有類似的意思，稱為語意相似度，例如
 |  | 男人 | 男人 | 男人 | 男人 | 男人 | 男人 | 男人 | 男人 |
