@@ -66,13 +66,45 @@ score=(freq_of_pair)/(freq_of_first_element×freq_of_second_element)
 最後再根據分數去做合併，詳細的方式可以[參考這篇](https://www.51cto.com/article/779682.html)。
 
 #### 3. Unigram
-不同於前面兩種，Unigram 是將從一個非常大的資料集中去除資料，如果語料庫中的第一個單字是 cats，則子字串['c'， 'a'， 't'， 's'， 'ca'， 'at'， 'ts'， 'cat'， 'ats']將被添加到詞彙表中。
+不同於前面兩種，Unigram 是將從一個非常大的資料集中去除資料，如果語料庫中的第一個單字是 cat，則子字串[['c', 'a', 't'], ['ca', 't'], ['c', 'at'], ['cat']]將被添加到詞彙表中。再來就算各組拆分的字串出現在文句中的機率
+```
+P('c', 'a', 't') = P(a)P(b)P(c)
+P('ca', 't') = P(ca)P(t)
+P('c', 'at') = P(ca)P(t)
+P('cat') = P(cat)
+```
+假設 P('ca', 't') 的機率最高，那麼 cat 就會被標記為 'ca' 與 't'。當然也有可能同個自備標記成多個分段。例如 tokenizatio 有可能被拆成 'token', 'iza', 'tion'或 'token', 'ization。
 
-## 1. Word2Vec
-這些詞與哪些詞有類似的意思，稱為語意相似度，例如
-|  | 男人 | 男人 | 男人 | 男人 | 男人 | 男人 | 男人 | 男人 |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-|  | 男孩 | 國王 | 爸爸 | 父親 | 皇帝 | 酋長 | 一家之主 | 媽媽 |
-|  | 0.859 | 0.923 | 0.965 | 0.943 | 0.924 | 0.835 | 0.735 | 0.268 |
+#### 4. SentencePiece
+結合了 BPE 與 Unigram，對於有漢字或非全用字母的語言有較好的效果。
 
-當然此相似度是由每個訓練者去定義，例如有些人認為一家之主多數是女人，那麼相似度就會降低。
+## 2. 程式撰寫
+HUGGING FACE 中提供了許多的範例與教學可以參考。在此使用 transformers 中的 AutoTokenizer，並使用 bert-base-chinese 模型來做 tokenize 看看會有什麼結果。
+```PYTHON
+from transformers import AutoTokenizer
+
+tokenizer = AutoTokenizer.from_pretrained("bert-base-chinese")
+sequence = "白日依山盡"
+tokens = tokenizer.tokenize(sequence)
+print(tokens)
+#['白', '日', '依', '山', '盡']
+```
+可以看到每個中文字都被正確的切割，如果選用非中文模型，就會出現不同結果，在此選用 bert-base-cased 模型
+```PYTHON
+from transformers import AutoTokenizer
+
+tokenizer = AutoTokenizer.from_pretrained("bert-base-cased")
+sequence = "白日依山盡"
+tokens = tokenizer.tokenize(sequence)
+print(tokens)
+#['白', '日', '[UNK]', '山', '[UNK]']
+```
+其中的 [UNK] 代表模型並不知道這個字或詞的意思，如果出現很多次的話就代表模型對此語言還不夠強。除了一般的 wordpieces 以外，BERT 裡頭有 5 個特殊 tokens 各司其職，隨後會一一介紹。
+```
+[CLS]：在做分類任務時其最後一層的 repr. 會被視為整個輸入序列的 repr.
+[SEP]：有兩個句子的文本會被串接成一個輸入序列，並在兩句之間插入這個 token 以做區隔
+[UNK]：沒出現在 BERT 字典裡頭的字會被這個 token 取代
+[PAD]：zero padding 遮罩，將長度不一的輸入序列補齊方便做 batch 運算
+[MASK]：未知遮罩，僅在預訓練階段會用到
+```
+
