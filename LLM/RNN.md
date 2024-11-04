@@ -8,7 +8,7 @@
 
 ## 1. 長短期記憶模型 Long Short-Term Memory networks (LSTM)
 為了要解決遺忘問題，LSTM 在模型中加入了「記憶」，會把最一開始的輸入一直傳進去跟後面的輸入做計算，且內部多了一個「遺忘門」與「更新門(與輸入門一起)」。下方符號皆為向量或矩陣\
-![img](https://mlarchive.com/wp-content/uploads/2023/07/1_S0rXIeO_VoUVOyrYHckUWg.gif)
+![img](https://mlarchive.com/wp-content/uploads/2023/07/1_S0rXIeO_VoUVOyrYHckUWg.gif) [來源](https://mlarchive.com/deep-learning/understanding-long-short-term-memory-networks/)
 1. 遺忘門 $$\ f_{t} = \sigma (W_{f}.[h_{t-1}, x_{t}] + b_{f}) $$
 2. 輸入門 $$\ i_{t} = \sigma (W_{i}.[h_{t-1}, x_{t}] + b_{i}), \tilde{C_{t}} = tanh(W_{C}.[h_{t-1}, x_{t}] + b_{C}) $$
 3. 更新層 $$\ C_{t} = f_{t}。C_{t-1} + i_{t}。\tilde{C_{t}} $$
