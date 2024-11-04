@@ -1,6 +1,6 @@
-在看文章時我們會規定文章的書寫順序，閱讀就需要依照書寫順序，例如英文跟中文的書寫順序就不同。在機器學習中我們會把讀到的物件依序丟進神經網路中，每次進入的權重都不相同，這種神經網路稱為循環神經網路 Recurrent Neural Networks(RNN)。\
+在看文章時我們會規定文章的書寫順序，閱讀就需要依照書寫順序，例如英文跟中文的書寫順序就不同。在機器學習中我們會把讀到的物件依序丟進神經網路中，每次進入的權重都不相同，這種神經網路稱為循環神經網路 Recurrent Neural Networks(RNN)。
 
-## 1. 循環神經網路 Recurrent Neural Networks(RNN)
+## 1. 循環神經網路 Recurrent Neural Networks (RNN)
 ![img](https://minio.cvmart.net/cvmart-community/images/202001/10/72/t068jrftYA.png)\
 [來源](https://www.cvmart.net/community/detail/1360)。當 x<sub>0</sub> 丟進去後會得到一組 o<sub>0</sub> 與 w<sub>1</sub>，接著再把 x<sub>1</sub> 丟進去，得到 o<sub>1</sub> 與 w<sub>2</sub>，...。
 ![img](https://i-blog.csdnimg.cn/blog_migrate/92e4fde622794bf4c11c517096789eb4.png)\
@@ -59,17 +59,15 @@ $$\ = net_{l}^{t} = \delta_{T}^{t} \prod_{i=k}^{t-1}Wdiag[f'(net_{i})] $$
 
 接著再往回一層一層傳過去
 
-$$\ = \delta_{T}^{t} = Ua_{t}^{l-1} + Ws_{t-1}, a_{t}^{l-1} = f^{l-1} (net_{t}^{l-1}) $$
+$$\ \delta_{T}^{t} = Ua_{t}^{l-1} + Ws_{t-1}, a_{t}^{l-1} = f^{l-1} (net_{t}^{l-1}) $$
 
 $$\ net_{l}^{t} $$ 為第 l 層的神經元加權輸入， $$\ a_{t}^{l-1} $$ 為第 l-1 層的神經元輸出。f 為激勵函數。所以
 
-$$\ = (\delta_{l-1}^{t})^{T} = \frac{\partial E}{\partial net_{t}^{l-1}} = \frac{\partial E}{\partial net_{t}^{l}} \frac{\partial net_{t}^{l}}{\partial net_{t}^{l-1}} $$
+$$\ (\delta_{l-1}^{t})^{T} = \frac{\partial E}{\partial net_{t}^{l-1}} = \frac{\partial E}{\partial net_{t}^{l}} \frac{\partial net_{t}^{l}}{\partial net_{t}^{l-1}} $$
 
 $$\ = (\delta_{l}^{t})^{T} U diag[f'^{l-1}(net_{t}^{l-1})] $$
 
 即是將誤差向傳到上一層的算法。最後在計算每個權重的梯度 
-
-$$\ = \frac{\partial E}{\partial W} = \nabla_{W} E $$
 
 $$\begin{equation}
     \frac{\partial E}{\partial W} = \nabla_{W} E = 
@@ -87,7 +85,11 @@ $$\ \frac{\partial E}{\partial w_{ij}} = \frac{\partial E}{\partial net_{j}^{t}}
 
 所以最後的誤差即為每個時刻的和 $$\ \nabla_{W} E = \sum_{i=1}^{t} \nabla_{W_{i}} E $$
 
-每丟一個新的輸入就會去更一次權重。這種方法有一個很明顯的缺點，就是一句話如果太長，那最一開始進來的文字就會被遺忘，在數學上就是因為一直做微分，如果是使用 tanh 或是 sigmoid，越前面的輸入到後面梯度就會消失。雖然此種行為很接近人的行為，但人們可以藉由某些方式來改進，而 RNN 的改進方式就是 LSTM。
+每丟一個新的輸入就會去更一次權重。這種方法有一個很明顯的缺點，就是一句話如果太長，那最一開始進來的文字就會被遺忘，在數學上就是因為一直做微分，如果是使用 tanh 或是 sigmoid，越前面的輸入到後面梯度就會消失。雖然此種行為很接近人的行為，但人們可以藉由某些方式來改進，而 RNN 的改進方式有以下三種
+1. 初始化權重，不要取極大或極小值。
+2. 使用 relu 代替 sigmoid 和 tanh 。
+3. 使用其他結構的 RNNs，比如（LTSM）和 Gated Recurrent Unit（GRU）。
+
 ## 1. 長短期記憶模型 Long Short-Term Memory networks (LSTM)
 為了要解決遺忘問題，LSTM 在模型中加入了「記憶」，會把最一開始的輸入一直傳進去跟後面的輸入做計算，且內部多了一個「遺忘門」與「更新門(與輸入門一起)」。下方符號皆為向量或矩陣\
 ![img](https://mlarchive.com/wp-content/uploads/2023/07/1_S0rXIeO_VoUVOyrYHckUWg.gif) [來源](https://mlarchive.com/deep-learning/understanding-long-short-term-memory-networks/)
