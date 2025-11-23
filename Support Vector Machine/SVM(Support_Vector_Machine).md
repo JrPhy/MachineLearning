@@ -43,12 +43,12 @@ $$ = \dfrac{|ax_{0} + by_{0} + c|}{\sqrt{a^2 + b^2}}$$
 
 $$d(p, L) = \dfrac{|ax_{0} + by_{0} + c|}{\sqrt{a^2 + b^2}} = \dfrac{|w^Tx +b|}{||w||}$$
 
-剩下的就如同 PLA，y = 1 or -1 -\rightarrow y(w<sup>T</sup>x +b) > 0 為一邊，< 0 為另外一邊。
+剩下的就如同 PLA，y = 1 or -1 $$\ \rightarrow $$ y(w<sup>T</sup>x +b) > 0 為一邊，< 0 為另外一邊。
 
 ## 3. 最佳化
 結合標籤後只須加上 y(w<sup>T</sup>x +b) ≥ 1，接著要來找最大的距離，根據前面的條件，最大距離為 max (||w||<sup>-1</sup>)，根據我們的限制條件可以寫成
 
-$$\ \max_{b, w}dfrac{1}{||w||} = \min_{b, w} ||w|| = \min_{b, w} \sqrt{{w^2}} \rightarrow \min_{b, w} \dfrac{1}{2}||w||^2  $$
+$$\ \max_{b, w} \dfrac{1}{||w||} = \min_{b, w} ||w|| = \min_{b, w} \sqrt{{w^2}} \rightarrow \min_{b, w} \dfrac{1}{2}||w||^2  $$
 
 在此想要在 $$\ y = <w^Tx + b> ≥ 1 $$ 的條件下最小化 $$\ <w^T, w> $$，使用 [Lagrange undetermined multiplier](https://en.wikipedia.org/wiki/Lagrange_multiplier) 來解
 
