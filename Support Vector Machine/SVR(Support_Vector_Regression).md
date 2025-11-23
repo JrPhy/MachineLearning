@@ -28,7 +28,7 @@ $$\ = 2\dfrac{K}{N}(\beta (\lambda I + K^T) - Y)$$
 
 $$\ \beta = (\lambda I + K)^{-1} Y$$
 
-由 [Mercer's theorem](https://en.wikipedia.org/wiki/Mercer%27s_theorem)，因為 K 為半正定，對所有 $$\ \lambda $$ 來說，$$\ \lambda I|K $$ 都存在。所以到目前為止，除了使用線性回歸外，也可以使用非線性回歸版本的 SVM。如果誤差為平方誤，那麼此種 SVM 被稱為 LSSVM(Least-Square SVM)，或稱 kernel rigde regression。
+由 [Mercer's theorem](https://en.wikipedia.org/wiki/Mercer%27s_theorem)，因為 K 為半正定，對所有 $$\ \lambda $$ 來說， $$\ \lambda IK$$ 都存在。所以到目前為止，除了使用線性回歸外，也可以使用非線性回歸版本的 SVM。如果誤差為平方誤，那麼此種 SVM 被稱為 LSSVM(Least-Square SVM)，或稱 kernel rigde regression。
 ![IMG](https://github.com/JrPhy/MachineLearning/blob/master/Support%20Vector%20Machine/img/LSSVM.jpg)
 ## 3. 結合回歸與軟邊界
 軟邊界可容許些許錯誤，所以支持向量就會比較少而且也比較快，這就是為什麼我們想結合兩者。
