@@ -9,7 +9,7 @@
 #### 1. 一維
 $$\ f(x) = 2x^2 + 4x + 3, f'(x) = 4x + 4 $$ -> $$\ f_{min}(x*) = (-1, 1) $$\
 而電腦無法算微分，所以轉為插分方程可得\
-$f'(x) = \dfrac{df(x)}{dx} \sim \dfrac{ \Delta f(x)}{ \Delta x} = \dfrac{df(x_2) - df(x_1)}{x_2 - x_1}$\
+$f'(x) = \dfrac{df(x)}{dx} \sim \dfrac{ \Delta f(x)}{ \Delta x} = \dfrac{f(x_2) - f(x_1)}{x_2 - x_1}$\
 所以就直接將 x 帶入去找到 x*\
 $x_{n+1} = x_n - \lambda f'(x_n)$\
 其中 $\lambda$ 就是每一步要跨多大步，太大步有可能走不到最小值，但太小步又會跑太久，所以就有以上最後提到的方法。而實際問題是很多維的，所以只要分個別維度去做即可。
