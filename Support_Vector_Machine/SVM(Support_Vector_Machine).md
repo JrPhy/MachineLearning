@@ -1,5 +1,5 @@
-在機器學習中的基本問題就是分類，若是二元分類的話有很多種方法，PLA 就是其中一種解法，但不是唯一解，所以會加入一些限制條件來得到一條線或是超平面，下圖就是將 O 與 X 用一條線分開的例子
-![img](https://github.com/JrPhy/MachineLearning/blob/master/Support%20Vector%20Machine/img/classfy.jpg)
+在機器學習中的基本問題就是分類，若是二元分類的話有很多種方法，PLA 就是其中一種解法，但不是唯一解，所以會加入一些限制條件來得到一條線或是超平面，下圖就是將 O 與 X 用一條線分開的例子\
+![img](https://github.com/JrPhy/MachineLearning/blob/master/Support_Vector_Machine/img/classfy.jpg)
 
 ## 1. 限制條件
 在此的限制條件就是在 O X 的距離為最小下找到一條線，所以我們就先將距離最近的 O X 兩點找出來，如此一來該線就會通過 O X 的中點，所以
