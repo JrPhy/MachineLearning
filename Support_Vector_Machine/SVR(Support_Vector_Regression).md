@@ -29,11 +29,11 @@ $$\ = 2\dfrac{K}{N}(\beta (\lambda I + K^T) - Y)$$
 $$\ \beta = (\lambda I + K)^{-1} Y$$
 
 由 [Mercer's theorem](https://en.wikipedia.org/wiki/Mercer%27s_theorem)，因為 K 為半正定，對所有 $$\ \lambda $$ 來說， $$\ \lambda IK$$ 都存在。所以到目前為止，除了使用線性回歸外，也可以使用非線性回歸版本的 SVM。如果誤差為平方誤，那麼此種 SVM 被稱為 LSSVM(Least-Square SVM)，或稱 kernel rigde regression。
-![IMG](https://github.com/JrPhy/MachineLearning/blob/master/Support%20Vector%20Machine/img/LSSVM.jpg)
+![IMG](https://github.com/JrPhy/MachineLearning/blob/master/Support_Vector_Machine/img/LSSVM.jpg)
 ## 3. 結合回歸與軟邊界
 軟邊界可容許些許錯誤，所以支持向量就會比較少而且也比較快，這就是為什麼我們想結合兩者。
-![IMG](https://github.com/JrPhy/MachineLearning/blob/master/Support%20Vector%20Machine/img/Gauss-LSSVM.jpg)
-![IMG](https://github.com/JrPhy/MachineLearning/blob/master/Support%20Vector%20Machine/img/regre_soft_margin.jpg)\
+![IMG](https://github.com/JrPhy/MachineLearning/blob/master/Support_Vector_Machine/img/Gauss-LSSVM.jpg)
+![IMG](https://github.com/JrPhy/MachineLearning/blob/master/Support_Vector_Machine/img/regre_soft_margin.jpg)\
 假設上途中紅線是由回歸決定的，而虛線所為出的邊界寬度為 $$\ \epsilon $$。因為我們只關心該區域內的誤差，所以 err(y, s) = max(0, |y - s| - $$\ \epsilon $$)\
 |y - s| - $$\ \epsilon $$ < 0: err(y, s) = 0\
 |y - s| - $$\ \epsilon $$ > 0: err(y, s) = |y - s| - $$\ \epsilon $$\
@@ -91,7 +91,7 @@ $$\ \alpha_{i}^-[(y - wz_{i} - b) - (\epsilon + \xi_{i}^{-})], (C - \alpha_{i}^-
 
 若 $$\ \xi_{i}^{+} > 0 $$，則 $$\ C = \alpha_{i}^+$$。
 $$\ \xi_{i}^{-} > 0 $$，則 $$\ C = \alpha_{i}^-$$，所以 $$\ 0 ≤ \alpha_{i}^-, \alpha_{i}^+ ≤ C$$
-![IMG](https://github.com/JrPhy/MachineLearning/blob/master/Support%20Vector%20Machine/img/SVM_SVR.jpg)
+![IMG](https://github.com/JrPhy/MachineLearning/blob/master/Support_Vector_Machine/img/SVM_SVR.jpg)
 ## 稀疏的 SVR 解
 在軟邊界 SVM，我們只關心區域為內的錯誤，SVR 也是如此。若分類正確，那麼大部分的錯誤會在區域外，所以 $$\ \xi_{n}^{-} = \xi_{n}^{+} = 0 $$，但是
 $$\ \alpha_{i}^+[(y - wz_{i} - b) - \epsilon] = 0 $$ 且 $$\ [(y - wz_{i} - b) - \epsilon] ≠ 0 $$，所以 $$\ \alpha_{i}^+ > 0, \alpha_{i}^- > 0 $$，此即為當 SVR 為稀疏時的解，如同 SVM。
