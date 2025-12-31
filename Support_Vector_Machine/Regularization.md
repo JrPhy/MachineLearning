@@ -11,8 +11,8 @@ $$\ \frac{\partial}{\partial w}((Zw^T - Y)(Zw^T - Y)^T + \frac{\lambda}{N}ww^T) 
 
 可得 $$\ w = (ZZ^T+\lambda I)^{-1} ZY $$
 
-當 x 增加時，高次項會增加很快，所以高次項的係數通常很小。所以 $$\ \lambda $$ 可以壓過高次項。
-![img](https://github.com/JrPhy/MachineLearning/blob/master/Support%20Vector%20Machine/img/Regularization.jpg)\
+當 x 增加時，高次項會增加很快，所以高次項的係數通常很小。所以 $$\ \lambda $$ 可以壓過高次項。\
+![img](https://github.com/JrPhy/MachineLearning/blob/master/Support_Vector_Machine/img/Regularization.jpg)\
 在選擇多項式時可以選擇 Legendre 函數，此函數有較好的數值特性
 
 $$\ -1 ≤ L(x_{i}) ≤ 1, \int_{-1}^{1} L(x_{i})L(x_{j}), dx = \delta_{ij} $$
