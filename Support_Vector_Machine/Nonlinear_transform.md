@@ -14,11 +14,10 @@ Q = 1, # = 1+2\
 Q = 2, # = 1+2+3\
 ...\
 Q = n, # = 1+2+3+...+(n+1) = (n+1)(n+2)/2\
-可以知道其複雜度相當的高，所以實際在做轉換時不會選次數太高的多項式。且誤差並不會隨著次數增加而減少，雖然在訓練資料集中選擇高次數能降低誤差，但是實際資料的誤差可能會增加，此即為(over-fitting)過擬合現象
-![img](https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Overfitting.svg/450px-Overfitting.svg.png)
+可以知道其複雜度相當的高，所以實際在做轉換時不會選次數太高的多項式。且誤差並不會隨著次數增加而減少，雖然在訓練資料集中選擇高次數能降低誤差，但是實際資料的誤差可能會增加，此即為[(over-fitting)過擬合現象](https://zh.wikipedia.org/zh-tw/%E9%81%8E%E9%81%A9)
 
 而有以下方式可以避免過擬合
 1. 從次數較低的多項式開始
 2. 資料清理，消除雜訊
-3. [正則化](https://github.com/JrPhy/MachineLearning/blob/master/Support%20Vector%20Machine/Regularization.md)
+3. [正則化](https://github.com/JrPhy/MachineLearning/blob/master/Support_Vector_Machine/Regularization.md)
 4. 驗證
